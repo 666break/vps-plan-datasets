@@ -1,0 +1,7 @@
+Provider,Primary Datacenters,Notes
+RackNerd,Los Angeles / Dallas / New York / Chicago / Atlanta / Seattle (US),US-only datacenters. No CN2 or premium routing.
+Hetzner,Falkenstein (DE) / Helsinki (FI) / Nuremberg (DE),EU-only. GDPR-compliant. Excellent peering in Europe.
+DigitalOcean,New York / San Francisco / Toronto / London / Amsterdam / Frankfurt / Bangalore / Singapore / Sydney,9 regions globally. Strong API and metadata service.
+Vultr,32+ locations across North America / Europe / Asia / Australia,Largest datacenter footprint in this comparison.
+Contabo,Munich (DE) / Nuremberg (DE) / Seattle (US) / St. Louis (US) / Singapore,Limited locations but covers EU / US / Asia.
+ScalaHosting,Dallas (US) with managed cloud in multiple AWS regions,SPanel runs on top of AWS infrastructure for managed plans.
