@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VPS Plan Filter</title>
+<style>
+  :root { color-scheme: light; }
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 2rem auto; max-width: 980px; padding: 0 1rem; color:#1a1a1a; background:#fff; }
+  h1 { font-size: 1.5rem; }
+  .bar { display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0; }
+  label { font-size:.85rem; display:flex; flex-direction:column; gap:.25rem; }
+  input, select { padding:.4rem .5rem; border:1px solid #ccc; border-radius:6px; font:inherit; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border-bottom:1px solid #e5e5e5; padding:.5rem .4rem; text-align:left; white-space:nowrap; }
+  th { cursor:pointer; background:#f6f6f6; }
+  tr:hover td { background:#fafafa; }
+  .note { font-size:.82rem; color:#666; }
+</style>
+</head>
+<body>
+<h1>VPS plan filter</h1>
+<p class="note">Compare entry-level VPS plans by provider, vCPU, RAM and monthly price. Data embedded from <a href="https://serverbudget.com/best-vps">a public comparison</a>, extracted 2026-11-20. Promo/list prices are shown as published; verify with the provider before buying. No network calls, no tracking.</p>
+<div class="bar">
+  <label>Provider <select id="prov"><option value="">All</option></select></label>
+  <label>Min vCPU <input id="cpu" type="number" min="0" value="0" style="width:5rem"></label>
+  <label>Min RAM (GB) <input id="ram" type="number" min="0" value="0" style="width:5rem"></label>
+  <label>Max $/mo <input id="price" type="number" min="0" value="999" style="width:6rem"></label>
+</div>
+<table id="t"><thead><tr>
+  <th data-k="provider">Provider / Plan</th><th data-k="price">Price</th>
+  <th data-k="cpu">vCPU</th><th data-k="ram">RAM</th><th>Storage</th><th>Traffic</th>
+</tr></thead><tbody></tbody></table>
+<p class="note" id="cnt"></p>
+<script>
+const DATA = [
+ {provider:"Vultr / Regular Performance",price:2.50,priceLabel:"$2.50/mo (IPv6-only)",cpu:1,ram:0.5,storage:"10 GB SSD",traffic:"0.5 TB"},
+ {provider:"Vultr / Regular Performance (IPv4)",price:3.50,priceLabel:"$3.50/mo / $5.00/mo (1 GB)",cpu:1,ram:0.5,storage:"10-25 GB SSD",traffic:"0.5-1 TB"},
+ {provider:"DigitalOcean / Basic Droplet",price:4.00,priceLabel:"$4.00/mo",cpu:1,ram:0.5,storage:"10 GB SSD",traffic:"500 GiB"},
+ {provider:"DigitalOcean / Basic Droplet (1 GB)",price:6.00,priceLabel:"$6.00/mo",cpu:1,ram:1,storage:"25 GB SSD",traffic:"1000 GiB"},
+ {provider:"OVHcloud / VPS 2027 VPS-1",price:4.54,priceLabel:"$4.54/mo",cpu:2,ram:4,storage:"40 GB NVMe",traffic:"Unlimited (500 Mbps)"},
+ {provider:"Contabo / Cloud VPS 4",price:5.28,priceLabel:"$5.28/mo promo / $6.60 std",cpu:4,ram:8,storage:"100 GB SSD",traffic:"Unlimited (200 Mbps)"},
+ {provider:"Hostinger / KVM 1",price:6.49,priceLabel:"$6.49/mo promo / $19.49 list",cpu:1,ram:4,storage:"50 GB NVMe",traffic:"4 TB"},
+ {provider:"RackNerd / KVM (512 MB)",price:26.99,priceLabel:"$26.99/year",cpu:1,ram:0.5,storage:"30 GB SSD",traffic:"500 GB"},
+ {provider:"Hetzner / Regular Performance (CPX12)",price:null,priceLabel:"Not published on fetched page",cpu:1,ram:2,storage:"40 GB NVMe",traffic:"20 TB (EU)"}
+];
+let sortK="price", sortDir=1;
+const $ = s => document.querySelector(s);
+const prov = $("#prov");
+DATA.map(d=>d.provider.split(" / ")[0]).filter((v,i,a)=>a.indexOf(v)===i).forEach(p=>{
+  const o=document.createElement("option"); o.value=p; o.textContent=p; prov.appendChild(o);
+});
+function render(){
+  const p=prov.value, cpu=+$("#cpu").value||0, ram=+$("#ram").value||0, price=+$("#price").value||999;
+  let rows=DATA.filter(d=>(!p||d.provider.startsWith(p)) && d.cpu>=cpu && d.ram>=ram && (d.price===null||d.price<=price));
+  rows.sort((a,b)=>{const x=a[sortK],y=b[sortK]; if(x===y)return 0; if(x===null)return 1; if(y===null)return -1; return (x>y?1:-1)*sortDir;});
+  $("#t tbody").innerHTML = rows.map(d=>`<tr><td>${d.provider}</td><td>${d.priceLabel}</td><td>${d.cpu}</td><td>${d.ram}</td><td>${d.storage}</td><td>${d.traffic}</td></tr>`).join("");
+  $("#cnt").textContent = rows.length + " of " + DATA.length + " plans shown";
+}
+document.querySelectorAll("th[data-k]").forEach(th=>th.addEventListener("click",()=>{
+  const k=th.dataset.k; sortDir = (k===sortK)? -sortDir : 1; sortK=k; render();
+}));
+["prov","cpu","ram","price"].forEach(id=>$("#"+id).addEventListener("input",render));
+render();
+</script>
+</body>
+</html>
