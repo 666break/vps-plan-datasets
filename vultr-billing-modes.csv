@@ -1,0 +1,5 @@
+Family,vCPU,Memory,Bandwidth,Storage,Monthly Price,Hourly Price,Source
+Regular Performance,1,2 GB,2.00 TB,55 GB,$10.00/mo,$0.015/hr,Vultr pricing page
+Regular Performance,2,4 GB,3.00 TB,80 GB,$20.00/mo,$0.03/hr,Vultr pricing page
+High Performance AMD,1,1 GB,2.00 TB,25 GB,$6.00/mo,$0.009/hr,Vultr pricing page
+VX1 General Purpose,2,8 GB,5.00 TB,Block Storage,no monthly column,$0.060/hr,Vultr pricing page
