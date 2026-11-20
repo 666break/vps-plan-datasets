@@ -1,0 +1,10 @@
+Provider / Plan,Price (verified),vCPU,RAM,Storage,Traffic
+Vultr / Regular Performance,$2.50/mo (IPv6-only),1 vCPU,0.5 GB,10 GB SSD,0.5 TB
+Vultr / Regular Performance (IPv4),$3.50/mo / $5.00/mo (1 GB),1 vCPU,0.5-1 GB,10-25 GB SSD,0.5-1 TB
+DigitalOcean / Basic Droplet,$4.00/mo,1 vCPU,512 MiB,10 GB SSD,500 GiB
+DigitalOcean / Basic Droplet (1 GB),$6.00/mo,1 vCPU,1 GB,25 GB SSD,1000 GiB
+OVHcloud / VPS 2027 VPS-1,$4.54/mo,2 vCores,4 GB,40 GB NVMe,Unlimited (500 Mbps)
+Contabo / Cloud VPS 4,$5.28/mo promo / $6.60 std,4 vCPU,8 GB,100 GB SSD,Unlimited (200 Mbps)
+Hostinger / KVM 1,$6.49/mo promo / $19.49 list,1 vCPU,4 GB,50 GB NVMe,4 TB
+RackNerd / KVM (512 MB),$26.99/year,1 vCore,512 MB,30 GB SSD,500 GB
+Hetzner / Regular Performance (CPX12),Not published on fetched page,1 vCPU,2 GB,40 GB NVMe,20 TB (EU)
