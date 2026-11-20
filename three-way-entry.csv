@@ -1,0 +1,6 @@
+Provider / Plan,Monthly Price,vCPU,RAM,Storage,Bandwidth,Billing
+Vultr Regular Performance (entry),$2.50/mo,1,512 MB,10 GB SSD,0.5 TB,Hourly or monthly
+Vultr Regular Performance (1 GB),$5.00/mo,1,1 GB,25 GB SSD,1 TB,Hourly or monthly
+DigitalOcean Shared CPU (entry),$4.00/mo,1,512 MiB (basic),10 GB SSD,0.5 TB,Hourly or monthly
+DigitalOcean Premium Shared,$7.00/mo,1,1 GB,25 GB NVMe,1 TB,Hourly or monthly
+Hostinger KVM 1 (promo),$6.49/mo,1,4 GB,50 GB NVMe,4 TB,Monthly (renews $11.99)
